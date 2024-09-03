@@ -1,0 +1,33 @@
+{%extends "user/userHome.html"%}
+{%block content%}
+</style>
+
+<center>
+    <div style="margin-left: 140px; margin-right: 140px;">
+    <table class="table">
+        <tr>
+            <th>Cake Name</th><th>Price</th><th>Image</th><th>Quantity</th><th>Subtotal</th>    
+        </tr>
+        {%for item in order_details%}
+        <tr>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td><img src="{{url_for('static',filename=item[3])}}" style="height: 50px; width: 50px;"></td>
+            <td>
+                <input type="text" value="{{item[4]}}"  size="1" name="qty" readonly/>
+            <td>{{item[5]}}</td>
+        </tr>
+        {%endfor%}  
+        {%for ord in order%}
+        <tr>
+            <td><b>Order of Date :</b>{{ord[1]}}</td>
+            <td><b>Amount :</b>{{ord[2]}}</td>
+        </tr>
+        {%endfor%}
+         
+
+    </table>
+</div>
+
+</center>
+{%endblock%}

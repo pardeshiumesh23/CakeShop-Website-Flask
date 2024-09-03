@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <style>
+    body{
+        background-color: antiquewhite;
+    }
+    </style>
+</head>
+<body>
+    <center>
+        <a href="/adminHome">Go to Admin Home</a>
+        <h1>Show all Categories:</h1>
+        <a href="/addCategory">Add New Category</a>
+        <hr>
+        <table border="1">
+            <tr>
+                <th>Cid</th><th>CName</th><th>Edit</th><th>Delete</th>
+                {%for cat in cats%}
+                <tr>
+                    <td>{{cat[0]}}</td>
+                    <td>{{cat[1]}}</td>
+                    <td>
+                        <a href="/edit/{{cat[0]}}"><input type="button" value="Edit"></a>
+                    </td>
+                    <td>
+                        <a href="/delete/{{cat[0]}}"><input type="button" value="Delete"></a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tr>
+        </table>
+    </center>
+</body>
+</html>

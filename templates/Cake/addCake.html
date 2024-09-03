@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <center>   <form method="post" enctype="multipart/form-data">
+        <h1>Add New Cake</h1>
+        <hr style="color: black;">
+            <!-- enctype="multipart/form-data" This is mandatory when you want to upload a file on website -->
+        <table>
+            <tr>
+                <td>Enter Cake Name:</td>
+                <td><Input type="text" name="cname"></td>
+            </tr>
+            <tr>
+                <td>Enter Price:</td>
+                <td><input type="text" name="price"></td>
+            </tr>
+            <tr>
+                <td>Enter Description:</td>
+                <td><input type="text" name="description"></td>
+            </tr>
+            <tr>
+                <td>Select Cake:</td>
+                <td><input type="file" name="image_url"></td>
+                <!-- input type is file bacoz we want to upload a file for cake image -->
+            </tr>
+            <tr>
+                <td>Select Category:</td>
+                <td><select name="cat">   <!--select is used for the dropdown table in html -->
+                    {%for cat in cats%}
+                    <option value="{{cat[0]}}">{{cat[1]}}</option>
+                        {%endfor%}
+                </td>
+                
+            </tr>
+            <tr>
+                <td>Add Cake:</td>
+                <td><input type="submit" value="Add Cake"></td>
+            </tr>
+        
+        </table>
+    </form>
+</center>
+ 
+</body>
+</html>

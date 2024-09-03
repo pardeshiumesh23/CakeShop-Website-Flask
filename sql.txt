@@ -1,0 +1,9 @@
+create view cart_vw as (select c.cake_id,c.cake_name,c.price,c.image_url,m.qty, c.price * m.qty "Subtotal", m.username 
+from mycart m inner join Cake c on m.cake_id=c.cake_id);
+
+
+mysql> create view cart_vw as (select c.cake_id,c.cake_name,c.price,c.image_url,m.qty, c.price * m.qty "Subtotal", m.username,m.cart_id
+ from mycart m inner join Cake c on m.cake_id=c.cake_id and m.status='cart');
+
+ create view order_vw as (select c.cake_id,c.cake_name,c.price,c.image_url,m.qty, c.price * m.qty "Subtotal", m.username,m.order_id
+ from mycart m inner join Cake c on m.cake_id=c.cake_id and m.status='order');

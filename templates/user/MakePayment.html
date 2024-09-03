@@ -1,0 +1,31 @@
+{%extends "user/userHome.html"%}
+{%block content%}
+<center>
+    <div style="margin-left: 140px; margin-right: 140px;">
+    <form method="post">
+    <table class="table">
+        <tr>
+            <td>Card No:</td>
+            <td><input type="text" name="card_no" class="form-control" required></td>
+        </tr>
+        <tr>
+            <td>CVV:</td>
+            <td><input type="text" name="cvv" class="form-control" required></td>
+        </tr>
+        <tr>
+            <td>Expiry:</td>
+            <td><input type="text" name="expiry" class="form-control" required></td>
+        </tr>
+        <tr>
+            <td>Amount:</td>
+            <td><input type="text" name="amount"  class="form-control" required 
+                value = "{{session['total']}}" readonly/></td>
+        </tr>
+        <tr>
+            <td><button type="submit" class="btn-primary form-control" value="">Make Payment</button></td>
+        </tr> 
+    </table>
+</form>
+</div>
+</center>
+{%endblock%}

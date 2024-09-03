@@ -1,0 +1,30 @@
+{%extends "user/userHome.html"%}
+{%block content%}
+<center>
+    <div style="margin-left: 140px; margin-right: 140px;">
+    <form method="post">
+    <table class="table">
+        <tr>
+            <td>User ID</td>
+            <td>
+                <input type="text" name="uname" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="pwd" class="form-control"></td>
+        </tr>
+        <tr>
+            <td>Email ID:</td>
+            <td><input type="email" name="email" class="form-control"></td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</div>
+</center>
+{%endblock%}

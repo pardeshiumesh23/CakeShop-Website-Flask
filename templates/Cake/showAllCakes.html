@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <style>
+    body{
+        background-color: antiquewhite;
+    }
+    </style>
+</head>
+<body>
+    <center>
+        <a href="/adminHome">Go to Admin Home</a>
+        <h1>Show all Cakes:</h1>
+        <a href="/addCake">Add New Cake</a>
+        <hr>
+        <table border="1">
+            <tr>
+                <th>Cid</th><th>CName</th><th>Price</th><th>Description</th><th>Image</th><th>Category</th><th>Edit</th><th>Delete</th>
+                {%for cake in cakes%}
+                <tr>
+                    <td>{{cake[0]}}</td>
+                    <td>{{cake[1]}}</td>
+                    <td>{{cake[2]}}</td>
+                    <td>{{cake[3]}}</td>
+                    <td><img src="{{ url_for('static', filename=cake[4])}}" height="150" width="200"/></td>  
+                    <td>{{cake[5]}}</td>
+                    <td>           
+                        <a href="/editCake/{{cake[0]}}"><input type="button" value="Edit"></a>
+                    </td>
+                    <td>
+                        <a href="/deleteCake/{{cake[0]}}"><input type="button" value="Delete"></a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tr>
+        </table>
+    </center>
+</body>
+</html>

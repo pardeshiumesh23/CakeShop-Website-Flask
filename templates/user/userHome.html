@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Store Home</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <img src="/static/Pink Brown Soft Minimalist Cute Cake Dessert Shop Logo.jpg" style="height: 70px; width: 60px;"> -->
+    <a class="navbar-brand" href="#">Sweet Cake</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        {%if "uname" in session%}
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+            </svg> Welcome {{session["uname"]}} <span class="sr-only">(current)</span></a>
+        </li>
+        {%else%}
+        <li class="nav-item">
+          <a class="nav-link" href="#">Welcome To Sweet Cake 
+          </a>
+        </li>
+        {%endif%}
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+              <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+              <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+            </svg> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for cat in cats %}
+                <li><a class="dropdown-item" href="/ShowCakes/{{cat[0]}}">{{ cat[1] }}</a></li>
+                {% endfor %}
+              </ul>
+        </li>
+           
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
+              <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2m-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11"/>
+            </svg> About
+          </a>
+        </li>
+      
+        {%if "uname" in session%}
+        <li class="nav-item">
+          <a class="nav-link" href="/ShowCart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+            </svg>
+              </svg> Cart
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ShowOrder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0m-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
+            </svg> My Orders
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+              <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+            </svg> Logout
+          </a>
+        </li>
+        {%else%}
+        <li class="nav-item">
+          <a class="nav-link" href="login">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+              </svg> Login
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+              </svg> Register
+          </a>
+        </li>
+        {%endif%}
+      </ul>
+    </div>
+  </nav>
+
+    <center>
+    {%block content%}
+      <div class="container" style="background-color: rgb(246, 244, 240);">
+        <img src="/static/Pink Brown Soft Minimalist Cute Cake Dessert Shop Logo.jpg" alt="Sweet Cake Logo" class="img-fluid my-4" style="height: 300px;width: 300;">
+      </div>
+    </center>
+  <hr>
+
+
+  <div class="container">
+
+    <!-- <center><h3><b>{{catname}}</b></h3></center> -->
+    <center><h5 style="font-family: 'Times New Roman', Times, serif"><b>All Types of Cakes:</b></h5></center>
+    <div class="row">
+        {%for cake in cakes%}
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card">
+          <img src="{{url_for('static',filename=cake[4])}}" class="card-img-top" alt="Product 1" height="180" width="170">
+          <div class="card-body">
+            <center>
+            <h5 class="card-title">{{cake[1]}}</h5>
+            <p class="card-text">Rs: {{cake[2]}}</p>
+            <a href="/ViewDetails/{{cake[0]}}" class="btn btn-primary">View details</a>
+            <!-- it means take me to the ViewDetails page and pass the cake id to it -->
+            </center>
+          </div>
+        </div>
+      </div>
+        {%endfor%}
+    </div>
+    {%endblock%}
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-light py-3 mt-5">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2024 Sweet Cake All rights reserved.</p>
+    </div>  
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
